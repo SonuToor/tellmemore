@@ -5,6 +5,7 @@ import { theme } from "./theme";
 import parseTrends from "./Services/ParseTrends";
 import styled, { createGlobalStyle } from "styled-components";
 import ResourcesContainer from "./Components/ResourcesContainer";
+import { TrendsContext } from "./Context/TrendsContext";
 import TrendsContainer from "./Components/TrendsContainer";
 
 const GlobalStyle = createGlobalStyle`
@@ -42,7 +43,10 @@ const App: FunctionComponent = () => {
       <GlobalStyle />
       <Header />
       <Main>
-        <TrendsContainer trends={trends} />
+        <TrendsContext>
+          <TrendsContainer trends={trends} />
+          {/* <ResourcesContainer/> */}
+        </TrendsContext>
       </Main>
     </ThemeProvider>
   );
