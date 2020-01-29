@@ -4,11 +4,11 @@ const theme: DefaultTheme = {
   borderRadius: "10px",
   colors: {
     main: "#1DA1F2",
-    secondary: "#ffffff"
+    secondary: "#F5F8FA"
   },
   backgroundColors: {
     main: "#0C1B37",
-    secondary: "#363E5C"
+    secondary: "#132447"
   },
   font: "Helvetica Neue"
 };

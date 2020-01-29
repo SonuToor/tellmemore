@@ -18,22 +18,29 @@ export function splitBySpace(trend: string) {
 
 const parseTrends = (trends: string[]) => {
   let englishTrends = filterToEnglishOnly(trends);
-  let parsedTrends = [];
+  interface Trend {
+    [x: string]: string[];
+  }
+  let parsedTrends: Trend[];
+  parsedTrends = [];
   englishTrends.forEach(trend => {
     if (trend[0] === "#") {
-      let tripsObj = {
-        trend: trend,
-        words: splitByCapitalLetters(trend)
-      };
-      parsedTrends.push(tripsObj);
+      let words = splitByCapitalLetters(trend);
+      if (words !== null) {
+        let trendObj = {
+          [trend]: words
+        };
+        parsedTrends.push(trendObj);
+      }
     } else {
-      let tripsObj = {
-        trend: trend,
-        words: splitBySpace(trend)
+      let words = splitBySpace(trend);
+      let trendObj = {
+        [trend]: words
       };
-      parsedTrends.push(tripsObj);
+      parsedTrends.push(trendObj);
     }
   });
+  return parsedTrends;
 };
 
 export default parseTrends;
