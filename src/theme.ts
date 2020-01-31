@@ -8,7 +8,8 @@ const theme: DefaultTheme = {
   },
   backgroundColors: {
     main: "#0C1B37",
-    secondary: "#132447"
+    secondary: "#132447",
+    hover: "#1b2f57"
   },
   font: "Helvetica Neue"
 };

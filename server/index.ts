@@ -1,8 +1,15 @@
-const express = require("express");
-require("dotenv").config();
+// @ts-ignore
+import express = require("express");
+import parseTrends from "./ParseTrends";
+import Twit = require("twit");
+import { config as dotenvconfig } from "dotenv";
+dotenvconfig();
 
-var Twit = require("twit");
 var config = require("./config.ts");
+
+interface Trend {
+  [key: string]: string;
+}
 
 const app = express();
 
@@ -14,13 +21,16 @@ var params = {
 
 app.get("/trends", (req, res) => {
   T.get("trends/place", params, (err, data, response) => {
-    let allTrends = data[0]["trends"];
+    let allTrends: Trend[] = [];
+    allTrends = data[0]["trends"];
     let shortList = allTrends.slice(0, 20);
-    let trends = [];
+    let trends: string[] = [];
+
     shortList.forEach(trend => {
       trends.push(trend["name"]);
     });
-    res.send(trends).end();
+    let parsedTrends = parseTrends(trends);
+    res.send(parsedTrends).end();
   });
 });
 

@@ -15,13 +15,5 @@
     "noEmit": true,
     "jsx": "preserve"
   },
-  "include": [
-    // includes everything, even files we only want to be linted
-    "src",
-    "server/**/*"
-  ],
-  "exclude": [
-    // Now exclude what we do not want in our project
-    "server/**/*"
-  ]
+  "include": ["src"]
 }

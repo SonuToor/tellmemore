@@ -1,11 +1,15 @@
 import Header from "./Components/Header";
-import React, { FunctionComponent, useEffect, useState } from "react";
+import React, {
+  FunctionComponent,
+  useContext,
+  useEffect,
+  useState
+} from "react";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./theme";
-import parseTrends from "./Services/ParseTrends";
 import styled, { createGlobalStyle } from "styled-components";
 import ResourcesContainer from "./Components/ResourcesContainer";
-import { TrendsContext } from "./Context/TrendsContext";
+import { TrendsContext, TrendsProvider } from "./Context/TrendsContext";
 import TrendsContainer from "./Components/TrendsContainer";
 
 const GlobalStyle = createGlobalStyle`
@@ -27,14 +31,17 @@ const Main = styled.div`
 `;
 
 const App: FunctionComponent = () => {
-  // const [trends, setTrends] = useState(string[]);
-  const trends = ["hello", "#FakeHashtags", "RIP KOBE"];
+  // trends default value needs to be of type string[] not of []
+  const [trends, setTrends] = useState<string[]>([]);
+  const { parsedTrends, setParsedTrends } = useContext(TrendsContext);
   useEffect(() => {
     fetch("/trends")
       .then(res => res.json())
       .then(function(data) {
         console.log(data);
-        console.log(parseTrends(data));
+        console.log(Object.keys(data));
+        setParsedTrends(data);
+        setTrends(Object.keys(data));
       });
   }, []);
 
@@ -43,10 +50,10 @@ const App: FunctionComponent = () => {
       <GlobalStyle />
       <Header />
       <Main>
-        <TrendsContext>
+        <TrendsProvider>
           <TrendsContainer trends={trends} />
           {/* <ResourcesContainer/> */}
-        </TrendsContext>
+        </TrendsProvider>
       </Main>
     </ThemeProvider>
   );

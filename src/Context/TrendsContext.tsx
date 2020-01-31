@@ -1,25 +1,25 @@
 import React from "react";
 
-interface Trend {
+interface Trends {
   [x: string]: string[];
 }
 interface ContextProps {
-  trends: Trend[];
-  setTrends: Function;
+  parsedTrends: Trends;
+  setParsedTrends: Function;
 }
 interface Props {
   children: React.ReactNode;
 }
 
 export const TrendsContext = React.createContext<ContextProps>({
-  trends: [],
-  setTrends: () => null
+  parsedTrends: {},
+  setParsedTrends: () => null
 });
 
-export const TrendProvider: React.ComponentType<Props> = props => {
-  const [trends, setTrends] = React.useState<Trend[]>([]);
+export const TrendsProvider: React.ComponentType<Props> = props => {
+  const [parsedTrends, setParsedTrends] = React.useState<Trends>({});
   return (
-    <TrendsContext.Provider value={{ trends, setTrends }}>
+    <TrendsContext.Provider value={{ parsedTrends, setParsedTrends }}>
       {props.children}
     </TrendsContext.Provider>
   );

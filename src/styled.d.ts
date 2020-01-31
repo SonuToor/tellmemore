@@ -10,6 +10,7 @@ declare module "styled-components" {
     backgroundColors: {
       main: string;
       secondary: string;
+      hover: string;
     };
     font: string;
   }
