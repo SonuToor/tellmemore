@@ -20,9 +20,9 @@ interface Trend {
   [x: string]: string[];
 }
 
-const TrendsContainer: FunctionComponent<{ trends: string[] }> = props => {
-  const { trends } = props;
-
+const TrendsContainer: FunctionComponent<{ trends: string[] }> = ({
+  trends
+}) => {
   const renderTrends = () => {
     return trends.map(trend => <Trend key={trend} trend={trend} />);
   };

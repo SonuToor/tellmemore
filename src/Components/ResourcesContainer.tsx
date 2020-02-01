@@ -1,25 +1,31 @@
-import React, { FunctionComponent, useContext } from "react";
+import React, { FunctionComponent, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { TrendsContext } from "../Context/TrendsContext";
+import { SelectedTrendContext } from "../Context/SelectedTrendContext";
 
 const Container = styled.div`
-  background-color: ${props => props.theme.backgroundColors.secondary}
-  color: ${props => props.theme.colors.secondary}
-  &:hover {
-    color: ${props => props.theme.colors.main};
-  }
-  min-height: 1px;
+  background-color: ${props => props.theme.backgroundColors.secondary};
+  color: ${props => props.theme.colors.secondary};
+  min-height: 400px;
+  max-height: 500px;
+  min-width: 250px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  border-radius: ${props => props.theme.borderRadius};
 `;
 
-const ResourcesContainer: FunctionComponent<{ trends: string[] }> = props => {
+const ResourcesContainer: FunctionComponent = () => {
   const { parsedTrends } = useContext(TrendsContext);
+  const { selectedTrend } = useContext(SelectedTrendContext);
 
-  const { trends } = props;
-  return (
-    <Container>
-      <p>hi</p>
-    </Container>
-  );
+  useEffect(() => {
+    console.log(selectedTrend);
+    console.log(parsedTrends[selectedTrend]);
+  }, [selectedTrend]);
+
+  return <Container>{selectedTrend}</Container>;
 };
 
 export default ResourcesContainer;

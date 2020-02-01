@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useContext } from "react";
 import styled from "styled-components";
 import { SelectedTrendContext } from "../Context/SelectedTrendContext";
-// import { SelectedTrendContext } from "../Context/SelectedTrendContext";
 
 const TrendDiv = styled.div`
   text-align: center;
@@ -13,13 +12,11 @@ const TrendDiv = styled.div`
   }
 `;
 
-const Trend: FunctionComponent<{ trend: string }> = props => {
-  // const { setSelectedTrend } = useContext(SelectedTrendContext);
-  // onClick = { setSelectedTrend(props.trend)}
-
+const Trend: FunctionComponent<{ trend: string }> = ({ trend }) => {
+  const { setSelectedTrend } = useContext(SelectedTrendContext);
   return (
-    <TrendDiv onClick={() => console.log(props.trend)}>
-      <h4>{props.trend}</h4>
+    <TrendDiv onClick={() => setSelectedTrend(trend)}>
+      <h4>{trend}</h4>
     </TrendDiv>
   );
 };

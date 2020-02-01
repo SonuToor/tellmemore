@@ -10,6 +10,10 @@ import { theme } from "./theme";
 import styled, { createGlobalStyle } from "styled-components";
 import ResourcesContainer from "./Components/ResourcesContainer";
 import { TrendsContext, TrendsProvider } from "./Context/TrendsContext";
+import {
+  SelectedTrendContext,
+  SelectedTrendProvider
+} from "./Context/SelectedTrendContext";
 import TrendsContainer from "./Components/TrendsContainer";
 
 const GlobalStyle = createGlobalStyle`
@@ -31,19 +35,30 @@ const Main = styled.div`
 `;
 
 const App: FunctionComponent = () => {
-  // trends default value needs to be of type string[] not of []
   const [trends, setTrends] = useState<string[]>([]);
-  const { parsedTrends, setParsedTrends } = useContext(TrendsContext);
+  const [showResources, toggleShowResources] = useState(false);
+  const { setParsedTrends } = useContext(TrendsContext);
+  const { selectedTrend } = useContext(SelectedTrendContext);
+
   useEffect(() => {
     fetch("/trends")
       .then(res => res.json())
       .then(function(data) {
-        console.log(data);
-        console.log(Object.keys(data));
+        // console.log(data);
+        // console.log(Object.keys(data));
         setParsedTrends(data);
         setTrends(Object.keys(data));
       });
   }, []);
+
+  useEffect(() => {
+    if (selectedTrend !== "") {
+      console.log(selectedTrend);
+      toggleShowResources(true);
+    } else {
+      toggleShowResources(false);
+    }
+  }, [selectedTrend]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -51,8 +66,11 @@ const App: FunctionComponent = () => {
       <Header />
       <Main>
         <TrendsProvider>
-          <TrendsContainer trends={trends} />
-          {/* <ResourcesContainer/> */}
+          <SelectedTrendProvider>
+            <TrendsContainer trends={trends} />
+            <ResourcesContainer />
+            {/* {showResources ? <ResourcesContainer /> : null} */}
+          </SelectedTrendProvider>
         </TrendsProvider>
       </Main>
     </ThemeProvider>
