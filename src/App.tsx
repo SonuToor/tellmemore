@@ -9,11 +9,8 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "./theme";
 import styled, { createGlobalStyle } from "styled-components";
 import ResourcesContainer from "./Components/ResourcesContainer";
-import { TrendsContext, TrendsProvider } from "./Context/TrendsContext";
-import {
-  SelectedTrendContext,
-  SelectedTrendProvider
-} from "./Context/SelectedTrendContext";
+import { TrendsContext } from "./Context/TrendsContext";
+import { SelectedTrendContext } from "./Context/SelectedTrendContext";
 import TrendsContainer from "./Components/TrendsContainer";
 
 const GlobalStyle = createGlobalStyle`
@@ -44,8 +41,6 @@ const App: FunctionComponent = () => {
     fetch("/trends")
       .then(res => res.json())
       .then(function(data) {
-        // console.log(data);
-        // console.log(Object.keys(data));
         setParsedTrends(data);
         setTrends(Object.keys(data));
       });
@@ -53,7 +48,6 @@ const App: FunctionComponent = () => {
 
   useEffect(() => {
     if (selectedTrend !== "") {
-      console.log(selectedTrend);
       toggleShowResources(true);
     } else {
       toggleShowResources(false);
@@ -65,13 +59,8 @@ const App: FunctionComponent = () => {
       <GlobalStyle />
       <Header />
       <Main>
-        <TrendsProvider>
-          <SelectedTrendProvider>
-            <TrendsContainer trends={trends} />
-            <ResourcesContainer />
-            {/* {showResources ? <ResourcesContainer /> : null} */}
-          </SelectedTrendProvider>
-        </TrendsProvider>
+        <TrendsContainer trends={trends} />
+        {showResources ? <ResourcesContainer /> : null}
       </Main>
     </ThemeProvider>
   );

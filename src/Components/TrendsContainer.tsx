@@ -7,7 +7,7 @@ const Container = styled.div`
   color: ${props => props.theme.colors.secondary};
   min-height: 400px;
   max-height: 500px;
-  min-width: 250px;
+  min-width: 300px;
   font-weight: bold;
   display: flex;
   flex-direction: column;
