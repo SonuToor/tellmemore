@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useContext, useEffect } from "react";
+import React, { FunctionComponent, useContext } from "react";
 import Resource from "./ResourceComponents/Resource";
 import styled from "styled-components";
 import { TrendsContext } from "../Context/TrendsContext";
@@ -26,16 +26,13 @@ const ResourcesContainer: FunctionComponent = () => {
   const { parsedTrends } = useContext(TrendsContext);
   const { selectedTrend } = useContext(SelectedTrendContext);
 
-  useEffect(() => {
-    console.log(selectedTrend);
-    console.log(parsedTrends[selectedTrend]);
-  }, [selectedTrend]);
+  const queryParams = parsedTrends[selectedTrend];
 
   return (
     <Container>
       <Trend>{selectedTrend}</Trend>
-      {/* <Resource source="reddit" />
-      <Resource source="wikipedia" /> */}
+      <Resource resource="reddit" params={queryParams} />
+      <Resource resource="wiki" params={queryParams} />
     </Container>
   );
 };
