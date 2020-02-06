@@ -9,7 +9,7 @@ import fetchWiki from "./fetchWiki";
 //   [type: string]: Resource;
 // }
 
-const fetchResources = (resource: string, params: string[]) => {
+const fetchResources = async (resource: string, params: string[]) => {
   let paramsStringLength = params.length;
   let paramsString = params.map((param, index) => {
     if (index !== paramsStringLength - 1) {
@@ -19,9 +19,9 @@ const fetchResources = (resource: string, params: string[]) => {
     }
   });
   if (resource === "reddit") {
-    return fetchReddit(paramsString);
+    return await fetchReddit(paramsString);
   } else if (resource === "wiki") {
-    return fetchWiki(paramsString);
+    return await fetchWiki(paramsString);
   }
 };
 

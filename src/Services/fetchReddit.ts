@@ -18,7 +18,7 @@ const fetchReddit = (paramsString: string[]) => {
   let redditResources: string[][] = [];
   let fetchURL = `${URL1[0]}${paramsString.join("")}${URL1[1]}`;
 
-  fetch(fetchURL)
+  return fetch(fetchURL)
     .then(res => res.json())
     .then(function(res) {
       let redditPosts: [{ [x: string]: { [x: string]: string } }];
@@ -27,12 +27,11 @@ const fetchReddit = (paramsString: string[]) => {
       redditPosts.forEach(post => {
         let postDetails = [];
         postDetails.push(post.data.title);
-        postDetails.push(post.data.permalink);
+        postDetails.push(`https://www.reddit.com${post.data.permalink}`);
         redditResources.push(postDetails);
       });
+      return redditResources;
     });
-
-  return redditResources;
 };
 
 export default fetchReddit;
