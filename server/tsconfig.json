@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "es5",
+    "moduleResolution": "node",
+    "noUnusedLocals": false,
+    "isolatedModules": false
+  },
+  "include": ["index.ts", "config.ts", "parseTrends.ts"]
+}
