@@ -1,22 +1,11 @@
-import Resource from "../Components/ResourceComponents/Resource";
-
-// is this the only URL to pull from?
-// what about r/popular
-// what about sorting by hot?
-
-const URL1 = [
+const URL = [
   "https://www.reddit.com/r/all/search.json?q=",
-  "&sort=top&limit=3"
-];
-
-const URL2 = [
-  "https://www.reddit.com/r/popular/search.json?q=",
-  "&sort=top&limit=3"
+  "&sort=hot&limit=5"
 ];
 
 const fetchReddit = (paramsString: string[]) => {
   let redditResources: string[][] = [];
-  let fetchURL = `${URL1[0]}${paramsString.join("")}${URL1[1]}`;
+  let fetchURL = `${URL[0]}${paramsString.join("")}${URL[1]}`;
 
   return fetch(fetchURL)
     .then(res => res.json())

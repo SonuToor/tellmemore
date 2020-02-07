@@ -15,6 +15,7 @@ const app = express();
 
 var T = new Twit(config);
 
+// 3534 is the code for Canada
 var params = {
   id: "1"
 };

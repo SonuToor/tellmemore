@@ -11,7 +11,10 @@ const theme: DefaultTheme = {
     secondary: "#132447",
     hover: "#1b2f57"
   },
-  font: "Helvetica Neue"
+  font: "Helvetica Neue",
+  padding: {
+    resources: "5px 10px 5px 10px"
+  }
 };
 
 export { theme };
