@@ -13,5 +13,8 @@ declare module "styled-components" {
       hover: string;
     };
     font: string;
+    padding: {
+      resources: string;
+    };
   }
 }

@@ -1,6 +1,8 @@
 import React, { FunctionComponent, useContext } from "react";
 import Resource from "./ResourceComponents/Resource";
 import styled from "styled-components";
+import Reddit from "../Assets/RedditLogo.svg";
+import Wiki from "../Assets/WikipediaLogo.svg";
 import { TrendsContext } from "../Context/TrendsContext";
 import { SelectedTrendContext } from "../Context/SelectedTrendContext";
 
@@ -12,8 +14,6 @@ const Container = styled.div`
   min-width: 600px;
   max-width: 600px;
   font-weight: bold;
-  display: flex;
-  flex-direction: column;
   overflow-y: scroll;
   border-radius: ${props => props.theme.borderRadius};
 `;
@@ -32,8 +32,8 @@ const ResourcesContainer: FunctionComponent = () => {
   return (
     <Container>
       <Trend>{selectedTrend}</Trend>
-      <Resource resource="reddit" params={queryParams} />
-      <Resource resource="wiki" params={queryParams} />
+      <Resource resource="Reddit" icon={Reddit} params={queryParams} />
+      <Resource resource="Wiki" icon={Wiki} params={queryParams} />
     </Container>
   );
 };
