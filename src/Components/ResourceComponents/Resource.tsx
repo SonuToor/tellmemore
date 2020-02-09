@@ -7,6 +7,8 @@ const ResourceDiv = styled.div`
   padding: ${props => props.theme.padding.resources};
   cursor: pointer;
   min-height: 50px;
+  max-height: 200px;
+  overflow-y: scroll;
 
   &:hover {
     color: ${props => props.theme.colors.main};
@@ -23,6 +25,7 @@ const ResourceMain = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 4px solid ${props => props.theme.colors.secondary};
 `;
 
 const ResourceResults = styled.div`
