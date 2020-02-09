@@ -1,6 +1,6 @@
 const URL = [
-  "https://www.reddit.com/r/all/search.json?q=",
-  "&sort=hot&limit=5"
+  "https://www.reddit.com/search.json?q=",
+  "&sort=top&limit=5&t=day"
 ];
 
 const fetchReddit = (paramsString: string[]) => {

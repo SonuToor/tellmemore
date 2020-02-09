@@ -4,9 +4,6 @@ import ResourceLink from "./ResourceLink";
 import styled from "styled-components";
 
 const ResourceDiv = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding: ${props => props.theme.padding.resources};
   cursor: pointer;
   min-height: 50px;
@@ -16,11 +13,22 @@ const ResourceDiv = styled.div`
     background-color: ${props => props.theme.backgroundColors.hover};
   }
 `;
-
 const ResourceImage = styled.img`
   max-height: 40px;
   max-width: 40px;
   margin-right: 5px;
+`;
+
+const ResourceMain = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const ResourceResults = styled.div`
+  display: flex;
+  flex-direction: column;
+  border-radius: ${props => props.theme.borderRadius};
 `;
 
 const EmptyResource = styled.span`
@@ -69,18 +77,20 @@ const Resource: FunctionComponent<{
   }, [resources]);
 
   return (
-    <>
-      <ResourceDiv onClick={getResources}>
+    <ResourceDiv onClick={getResources}>
+      <ResourceMain>
         {resource}
         <ResourceImage src={icon} />
-      </ResourceDiv>
-      {fetched ? (showResults ? renderResources() : null) : null}
-      {noResults ? (
-        <EmptyResource>
-          We couldn't find anything relevant about that trend :(
-        </EmptyResource>
-      ) : null}
-    </>
+      </ResourceMain>
+      <ResourceResults>
+        {fetched ? (showResults ? renderResources() : null) : null}
+        {noResults ? (
+          <EmptyResource>
+            We couldn't find anything relevant about that trend :(
+          </EmptyResource>
+        ) : null}
+      </ResourceResults>
+    </ResourceDiv>
   );
 };
 
