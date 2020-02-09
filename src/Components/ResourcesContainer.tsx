@@ -14,8 +14,6 @@ const Container = styled.div`
   min-width: 600px;
   max-width: 600px;
   font-weight: bold;
-  display: flex;
-  flex-direction: column;
   overflow-y: scroll;
   border-radius: ${props => props.theme.borderRadius};
 `;

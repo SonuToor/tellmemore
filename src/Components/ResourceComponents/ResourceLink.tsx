@@ -2,9 +2,9 @@ import React, { FunctionComponent } from "react";
 import styled from "styled-components";
 
 const Link = styled.a`
+  margin-top: 2px;
   min-height: 50px;
   color: ${props => props.theme.colors.secondary};
-  padding: ${props => props.theme.padding.resources};
   text-decoration: none;
   text-align: center;
   border-radius: ${props => props.theme.borderRadius};

@@ -4,7 +4,6 @@ import ResourceLink from "./ResourceLink";
 import styled from "styled-components";
 
 const ResourceDiv = styled.div`
-  padding: ${props => props.theme.padding.resources};
   cursor: pointer;
   min-height: 50px;
   max-height: 200px;
@@ -22,16 +21,29 @@ const ResourceImage = styled.img`
 `;
 
 const ResourceMain = styled.div`
+  padding: ${props => props.theme.padding.resources};
   display: flex;
   align-items: center;
+  top: 0;
+  position: sticky;
+  z-index: 10;
   justify-content: space-between;
   border-bottom: 4px solid ${props => props.theme.colors.secondary};
+  background-color: ${props => props.theme.backgroundColors.secondary};
+
+  &:hover {
+    border-bottom: 4px solid ${props => props.theme.colors.main};
+    color: ${props => props.theme.colors.main};
+    background-color: ${props => props.theme.backgroundColors.hover};
+  }
 `;
 
 const ResourceResults = styled.div`
+  padding: ${props => props.theme.padding.resources};
   display: flex;
   flex-direction: column;
-  border-radius: ${props => props.theme.borderRadius};
+  position: relative;
+  z-index: 1;
 `;
 
 const EmptyResource = styled.span`

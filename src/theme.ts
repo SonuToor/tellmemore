@@ -13,7 +13,7 @@ const theme: DefaultTheme = {
   },
   font: "Helvetica Neue",
   padding: {
-    resources: "5px 10px 5px 10px"
+    resources: "0px 5px 5px 5px"
   }
 };
 
