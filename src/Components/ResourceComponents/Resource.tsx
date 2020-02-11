@@ -48,7 +48,8 @@ const ResourceResults = styled.div`
 
 const EmptyResource = styled.span`
   color: ${props => props.theme.colors.main};
-  padding: ${props => props.theme.padding.resources};
+  padding: 10px 0 10px 0;
+  text-align: center;
 `;
 const Resource: FunctionComponent<{
   resource: string;
@@ -89,6 +90,7 @@ const Resource: FunctionComponent<{
 
   useEffect(() => {
     toggleSetFetched(true);
+    toggleShowResults(true);
   }, [resources]);
 
   return (

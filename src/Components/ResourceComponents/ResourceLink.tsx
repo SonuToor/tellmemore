@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const Link = styled.a`
   margin-top: 2px;
+  margin-bottom: 2px;
   min-height: 50px;
   color: ${props => props.theme.colors.secondary};
   text-decoration: none;
