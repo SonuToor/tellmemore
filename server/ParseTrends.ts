@@ -12,8 +12,13 @@ function filterToEnglishOnly(trends: string[]) {
   return englishOnly;
 }
 function splitByCapitalLetters(trend: string) {
-  // what about 2020 or other numbers? KONY2020 --> "Kony", "2020"
-  return trend.match(/[A-Z][a-z]+/g);
+  let words = trend.match(/[A-Z][a-z]+/g);
+  let numbers = trend.match(/[0-9]+/g);
+  if (numbers) {
+    let results = words.concat(numbers);
+    return results;
+  }
+  return words;
 }
 
 function splitBySpace(trend: string) {
