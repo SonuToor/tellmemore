@@ -23,8 +23,9 @@
   "scripts": {
     "start": "react-scripts start",
     "server": "tsc server/index.ts && node server/index.js",
+    "servertest": "node server/index.js",
     "postinstall": "rm -rf node_modules/@types/react-native",
-    "dev": "run-p server start",
+    "dev": "run-p servertest start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
