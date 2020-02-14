@@ -24,7 +24,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Main = styled.div`
+const Main = styled.main`
   margin-left: 10%;
   margin-right: 10%;
   width: 80%;

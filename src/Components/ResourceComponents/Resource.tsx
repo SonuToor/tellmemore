@@ -3,7 +3,7 @@ import React, { FunctionComponent, useState, useEffect } from "react";
 import ResourceLink from "./ResourceLink";
 import styled from "styled-components";
 
-const ResourceDiv = styled.div`
+const ResourceDiv = styled.section`
   cursor: pointer;
   min-height: 50px;
   max-height: 200px;
@@ -83,7 +83,6 @@ const Resource: FunctionComponent<{
   };
 
   useEffect(() => {
-    console.log(params);
     toggleSetFetched(false);
     toggleNoResults(false);
     setResources([]);
