@@ -83,6 +83,7 @@ const Resource: FunctionComponent<{
   };
 
   useEffect(() => {
+    console.log(params);
     toggleSetFetched(false);
     toggleNoResults(false);
     setResources([]);

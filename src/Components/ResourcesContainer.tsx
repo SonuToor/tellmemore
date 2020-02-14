@@ -9,7 +9,7 @@ import { SelectedTrendContext } from "../Context/SelectedTrendContext";
 const Container = styled.div`
   background-color: ${props => props.theme.backgroundColors.secondary};
   color: ${props => props.theme.colors.secondary};
-  min-height: 400px;
+  min-height: 500px;
   max-height: 500px;
   min-width: 600px;
   max-width: 600px;

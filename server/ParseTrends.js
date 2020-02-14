@@ -29,7 +29,7 @@ function splitHashtagTrend(trend) {
         });
     }
     // add numbers if there any
-    if (numbers) {
+    if (numbers !== null && words !== null) {
         var results = words.concat(numbers);
         return results;
     }

@@ -34,7 +34,7 @@ function splitHashtagTrend(trend: string) {
     });
   }
   // add numbers if there any
-  if (numbers) {
+  if (numbers !== null && words !== null) {
     let results = words.concat(numbers);
     return results;
   }

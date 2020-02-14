@@ -12,6 +12,7 @@ import ResourcesContainer from "./Components/ResourcesContainer";
 import { TrendsContext } from "./Context/TrendsContext";
 import { SelectedTrendContext } from "./Context/SelectedTrendContext";
 import TrendsContainer from "./Components/TrendsContainer";
+import { useSpring, animated } from "react-spring";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -37,6 +38,15 @@ const App: FunctionComponent = () => {
   const { setParsedTrends } = useContext(TrendsContext);
   const { selectedTrend } = useContext(SelectedTrendContext);
 
+  const resourceSpring = useSpring({
+    opacity: showResources ? 1 : 0,
+    marginTop: showResources ? 0 : -500
+  });
+
+  const trendSpring = useSpring({
+    marginLeft: showResources ? -50 : 0
+  });
+
   useEffect(() => {
     fetch("/trends")
       .then(res => res.json())
@@ -59,8 +69,14 @@ const App: FunctionComponent = () => {
       <GlobalStyle />
       <Header />
       <Main>
-        <TrendsContainer trends={trends} />
-        {showResources ? <ResourcesContainer /> : null}
+        <animated.div style={trendSpring}>
+          <TrendsContainer trends={trends} />
+        </animated.div>
+        {showResources ? (
+          <animated.div style={resourceSpring}>
+            <ResourcesContainer />
+          </animated.div>
+        ) : null}
       </Main>
     </ThemeProvider>
   );
