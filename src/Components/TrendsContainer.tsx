@@ -1,5 +1,6 @@
-import React, { FunctionComponent, useEffect } from "react";
+import React, { FunctionComponent } from "react";
 import styled from "styled-components";
+import ReactLoading from "react-loading";
 import Trend from "./Trend";
 
 const Container = styled.div`
@@ -13,6 +14,11 @@ const Container = styled.div`
   flex-direction: column;
   overflow-y: scroll;
   border-radius: ${props => props.theme.borderRadius};
+`;
+const NoTrendsContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 200px;
 `;
 
 // this interface Trend is used more than once, should it be created in one single place and imported?
@@ -29,7 +35,13 @@ const TrendsContainer: FunctionComponent<{
   };
   return (
     <Container>
-      {trends.length !== 0 || error === true ? renderTrends() : null}
+      {trends.length !== 0 || error === true ? (
+        renderTrends()
+      ) : (
+        <NoTrendsContainer>
+          <ReactLoading type="spin" color="white" height={50} width={50} />
+        </NoTrendsContainer>
+      )}
     </Container>
   );
 };
