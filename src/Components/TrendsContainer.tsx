@@ -20,15 +20,16 @@ interface Trend {
   [x: string]: string[];
 }
 
-const TrendsContainer: FunctionComponent<{ trends: string[] }> = ({
-  trends
-}) => {
+const TrendsContainer: FunctionComponent<{
+  trends: string[];
+  error: boolean;
+}> = ({ trends, error }) => {
   const renderTrends = () => {
     return trends.map(trend => <Trend key={trend} trend={trend} />);
   };
   return (
     <Container>
-      {trends.length !== 0 ? renderTrends() : <p>No trends yet :(</p>}
+      {trends.length !== 0 || error === true ? renderTrends() : null}
     </Container>
   );
 };

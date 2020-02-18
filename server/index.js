@@ -15,6 +15,12 @@ var params = {
 };
 app.get("/trends", function (req, res) {
     T.get("trends/place", params, function (err, data, response) {
+        if (err) {
+            console.log(err);
+            return {
+                error: true
+            };
+        }
         var allTrends = [];
         allTrends = data[0]["trends"];
         var shortList = allTrends.slice(0, 20);
@@ -26,4 +32,4 @@ app.get("/trends", function (req, res) {
         res.send(parsedTrends).end();
     });
 });
-app.listen(8080);
+app.listen(1234);

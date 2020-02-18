@@ -35,6 +35,7 @@ const Main = styled.main`
 const App: FunctionComponent = () => {
   const [trends, setTrends] = useState<string[]>([]);
   const [showResources, toggleShowResources] = useState(false);
+  const [fetchError, toggleFetchError] = useState(false);
   const { setParsedTrends } = useContext(TrendsContext);
   const { selectedTrend } = useContext(SelectedTrendContext);
 
@@ -51,8 +52,15 @@ const App: FunctionComponent = () => {
     fetch("/trends")
       .then(res => res.json())
       .then(function(data) {
-        setParsedTrends(data);
-        setTrends(Object.keys(data));
+        // check for fetching trends error
+        if (data.error === true) {
+          toggleFetchError(true);
+          return;
+        } else {
+          toggleFetchError(false);
+          setParsedTrends(data);
+          setTrends(Object.keys(data));
+        }
       });
   }, []);
 
@@ -70,7 +78,7 @@ const App: FunctionComponent = () => {
       <Header />
       <Main>
         <animated.div style={trendSpring}>
-          <TrendsContainer trends={trends} />
+          <TrendsContainer trends={trends} error={fetchError} />
         </animated.div>
         {showResources ? (
           <animated.div style={resourceSpring}>

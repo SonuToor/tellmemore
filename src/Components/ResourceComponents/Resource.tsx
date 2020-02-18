@@ -2,6 +2,7 @@ import fetchResources from "../../Services/fetchResources";
 import React, { FunctionComponent, useState, useEffect } from "react";
 import ResourceLink from "./ResourceLink";
 import styled from "styled-components";
+import { useSpring, animated } from "react-spring";
 
 const ResourceDiv = styled.section`
   cursor: pointer;
@@ -38,7 +39,7 @@ const ResourceMain = styled.div`
   }
 `;
 
-const ResourceResults = styled.div`
+const ResourceResults = styled(animated.div)`
   padding: ${props => props.theme.padding.resources};
   display: flex;
   flex-direction: column;
@@ -60,6 +61,10 @@ const Resource: FunctionComponent<{
   const [fetched, toggleSetFetched] = useState(false);
   const [noResults, toggleNoResults] = useState(false);
   const [showResults, toggleShowResults] = useState(false);
+  const resourceSpring = useSpring({
+    opacity: showResults ? 1 : 0,
+    marginTop: showResults ? 0 : -500
+  });
 
   const getResources = async () => {
     toggleShowResults(!showResults);
@@ -99,7 +104,7 @@ const Resource: FunctionComponent<{
         {resource}
         <ResourceImage src={icon} />
       </ResourceMain>
-      <ResourceResults>
+      <ResourceResults style={resourceSpring}>
         {fetched ? (showResults ? renderResources() : null) : null}
         {noResults ? (
           <EmptyResource>
