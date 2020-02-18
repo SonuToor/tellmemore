@@ -74,7 +74,7 @@ const Resource: FunctionComponent<{
     }
     let results = await fetchResources(resource, params);
     if (results !== undefined) {
-      if (results.length === 0) {
+      if (results.length === 0 || results[0] === "error") {
         toggleNoResults(true);
       }
       setResources(results);
