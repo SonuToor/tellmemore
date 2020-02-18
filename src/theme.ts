@@ -7,9 +7,9 @@ const theme: DefaultTheme = {
     secondary: "#F5F8FA"
   },
   backgroundColors: {
-    main: "#0C1B37",
-    secondary: "#132447",
-    hover: "#1b2f57"
+    main: "#14202a",
+    secondary: "#192734",
+    hover: "#1b2f42"
   },
   font: "Helvetica Neue",
   padding: {

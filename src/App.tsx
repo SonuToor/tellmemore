@@ -12,6 +12,7 @@ import ResourcesContainer from "./Components/ResourcesContainer";
 import { TrendsContext } from "./Context/TrendsContext";
 import { SelectedTrendContext } from "./Context/SelectedTrendContext";
 import TrendsContainer from "./Components/TrendsContainer";
+import { useSpring, animated } from "react-spring";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -23,7 +24,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Main = styled.div`
+const Main = styled.main`
   margin-left: 10%;
   margin-right: 10%;
   width: 80%;
@@ -34,15 +35,32 @@ const Main = styled.div`
 const App: FunctionComponent = () => {
   const [trends, setTrends] = useState<string[]>([]);
   const [showResources, toggleShowResources] = useState(false);
+  const [fetchError, toggleFetchError] = useState(false);
   const { setParsedTrends } = useContext(TrendsContext);
   const { selectedTrend } = useContext(SelectedTrendContext);
+
+  const resourceSpring = useSpring({
+    opacity: showResources ? 1 : 0,
+    marginTop: showResources ? 0 : -500
+  });
+
+  const trendSpring = useSpring({
+    marginLeft: showResources ? -50 : 0
+  });
 
   useEffect(() => {
     fetch("/trends")
       .then(res => res.json())
       .then(function(data) {
-        setParsedTrends(data);
-        setTrends(Object.keys(data));
+        // check for fetching trends error
+        if (data.error === true) {
+          toggleFetchError(true);
+          return;
+        } else {
+          toggleFetchError(false);
+          setParsedTrends(data);
+          setTrends(Object.keys(data));
+        }
       });
   }, []);
 
@@ -59,8 +77,14 @@ const App: FunctionComponent = () => {
       <GlobalStyle />
       <Header />
       <Main>
-        <TrendsContainer trends={trends} />
-        {showResources ? <ResourcesContainer /> : null}
+        <animated.div style={trendSpring}>
+          <TrendsContainer trends={trends} error={fetchError} />
+        </animated.div>
+        {showResources ? (
+          <animated.div style={resourceSpring}>
+            <ResourcesContainer />
+          </animated.div>
+        ) : null}
       </Main>
     </ThemeProvider>
   );

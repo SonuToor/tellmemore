@@ -1,7 +1,8 @@
 import fetchReddit from "./fetchReddit";
-import fetchWiki from "./fetchWiki";
+import { fetchWiki } from "./fetchWiki";
+import { fetchWikiSecondary } from "./fetchWiki";
 
-const fetchResources = (resource: string, params: string[]) => {
+const fetchResources = async (resource: string, params: string[]) => {
   let paramsStringLength = params.length;
   let paramsString = params.map((param, index) => {
     if (index !== paramsStringLength - 1) {
@@ -13,7 +14,13 @@ const fetchResources = (resource: string, params: string[]) => {
   if (resource === "Reddit") {
     return fetchReddit(paramsString);
   } else if (resource === "Wiki") {
-    return fetchWiki(paramsString);
+    let results = await fetchWiki(paramsString);
+    // if querying Wikipedia with all words of the trend doesn't work, try each word invididually
+    if (results.length === 0) {
+      return await fetchWikiSecondary(paramsString);
+    } else {
+      return fetchWiki(paramsString);
+    }
   }
 };
 
