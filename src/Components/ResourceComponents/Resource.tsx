@@ -2,7 +2,8 @@ import fetchResources from "../../Services/fetchResources";
 import React, { FunctionComponent, useState, useEffect } from "react";
 import ResourceLink from "./ResourceLink";
 import styled from "styled-components";
-import ReactLoading from "react-loading";
+// import ReactLoading from "react-loading";
+import LoadingComponent from "../LoadingComponent";
 import { useSpring, animated } from "react-spring";
 
 const ResourceDiv = styled.section`
@@ -106,7 +107,7 @@ const Resource: FunctionComponent<{
       <ResourceResults style={resourceSpring}>
         {selected ? (
           fetching ? (
-            <ReactLoading type="spin" color="white" height={50} width={50} />
+            <LoadingComponent trends={false} />
           ) : (
             renderResources()
           )
