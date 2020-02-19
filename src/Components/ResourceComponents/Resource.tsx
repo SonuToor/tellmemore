@@ -2,6 +2,8 @@ import fetchResources from "../../Services/fetchResources";
 import React, { FunctionComponent, useState, useEffect } from "react";
 import ResourceLink from "./ResourceLink";
 import styled from "styled-components";
+// import ReactLoading from "react-loading";
+import LoadingComponent from "../LoadingComponent";
 import { useSpring, animated } from "react-spring";
 
 const ResourceDiv = styled.section`
@@ -58,26 +60,28 @@ const Resource: FunctionComponent<{
   params: string[];
 }> = ({ resource, icon, params }) => {
   const [resources, setResources] = useState<string[][]>([]);
-  const [fetched, toggleSetFetched] = useState(false);
+  const [fetching, toggleSetFetching] = useState(true);
+  const [selected, toggleSelected] = useState(false);
   const [noResults, toggleNoResults] = useState(false);
-  const [showResults, toggleShowResults] = useState(false);
   const resourceSpring = useSpring({
-    opacity: showResults ? 1 : 0,
-    marginTop: showResults ? 0 : -500
+    opacity: selected ? 1 : 0,
+    marginTop: selected ? 0 : -500
   });
 
   const getResources = async () => {
-    toggleShowResults(!showResults);
+    toggleSelected(!selected);
     // do not fetch the resource a second time after its been clicked
     if (resources.length !== 0) {
       return;
     }
+    toggleSetFetching(true);
     let results = await fetchResources(resource, params);
     if (results !== undefined) {
-      if (results.length === 0) {
+      if (results.length === 0 || results[0] === "error") {
         toggleNoResults(true);
       }
       setResources(results);
+      toggleSetFetching(false);
     }
   };
 
@@ -88,15 +92,11 @@ const Resource: FunctionComponent<{
   };
 
   useEffect(() => {
-    toggleSetFetched(false);
+    toggleSetFetching(false);
     toggleNoResults(false);
+    toggleSelected(false);
     setResources([]);
   }, [params]);
-
-  useEffect(() => {
-    toggleSetFetched(true);
-    toggleShowResults(true);
-  }, [resources]);
 
   return (
     <ResourceDiv onClick={getResources}>
@@ -105,7 +105,13 @@ const Resource: FunctionComponent<{
         <ResourceImage src={icon} />
       </ResourceMain>
       <ResourceResults style={resourceSpring}>
-        {fetched ? (showResults ? renderResources() : null) : null}
+        {selected ? (
+          fetching ? (
+            <LoadingComponent trends={false} />
+          ) : (
+            renderResources()
+          )
+        ) : null}
         {noResults ? (
           <EmptyResource>
             We couldn't find anything relevant about that trend :(

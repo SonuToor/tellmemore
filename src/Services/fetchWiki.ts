@@ -21,8 +21,11 @@ export const fetchWiki = (paramsString: string[]) => {
         articleDetails.push(urls[index]);
         wikiResources.push(articleDetails);
       });
-
       return wikiResources;
+    })
+    .catch(error => {
+      console.log(error);
+      return ["error", error];
     });
 };
 
@@ -46,7 +49,12 @@ export const fetchWikiSecondary = (paramsString: string[]) => {
           });
       }
     })
-  ).then(() => {
-    return wikiResources;
-  });
+  )
+    .then(() => {
+      return wikiResources;
+    })
+    .catch((error: any) => {
+      console.log(error);
+      return ["error", error];
+    });
 };

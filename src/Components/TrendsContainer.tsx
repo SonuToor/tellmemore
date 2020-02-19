@@ -1,5 +1,6 @@
-import React, { FunctionComponent, useEffect } from "react";
+import React, { FunctionComponent } from "react";
 import styled from "styled-components";
+import LoadingComponent from "./LoadingComponent";
 import Trend from "./Trend";
 
 const Container = styled.div`
@@ -15,11 +16,6 @@ const Container = styled.div`
   border-radius: ${props => props.theme.borderRadius};
 `;
 
-// this interface Trend is used more than once, should it be created in one single place and imported?
-interface Trend {
-  [x: string]: string[];
-}
-
 const TrendsContainer: FunctionComponent<{
   trends: string[];
   error: boolean;
@@ -29,7 +25,11 @@ const TrendsContainer: FunctionComponent<{
   };
   return (
     <Container>
-      {trends.length !== 0 || error === true ? renderTrends() : null}
+      {trends.length !== 0 && error === false ? (
+        renderTrends()
+      ) : (
+        <LoadingComponent trends={true} />
+      )}
     </Container>
   );
 };

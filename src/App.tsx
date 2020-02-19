@@ -55,7 +55,6 @@ const App: FunctionComponent = () => {
         // check for fetching trends error
         if (data.error === true) {
           toggleFetchError(true);
-          return;
         } else {
           toggleFetchError(false);
           setParsedTrends(data);

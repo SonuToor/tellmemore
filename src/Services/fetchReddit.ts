@@ -20,6 +20,10 @@ const fetchReddit = (paramsString: string[]) => {
         redditResources.push(postDetails);
       });
       return redditResources;
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      return ["error", error];
     });
 };
 
