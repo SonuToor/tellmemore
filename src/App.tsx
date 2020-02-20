@@ -49,7 +49,7 @@ const App: FunctionComponent = () => {
   });
 
   useEffect(() => {
-    fetch("/trends")
+    fetch("/.netlify/functions/index/trends")
       .then(res => res.json())
       .then(function(data) {
         // check for fetching trends error
