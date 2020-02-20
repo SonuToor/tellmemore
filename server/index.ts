@@ -5,6 +5,8 @@ import Twit = require("twit");
 import { config as dotenvconfig } from "dotenv";
 dotenvconfig();
 
+const serverless = require("serverless-http");
+
 var config = require("./config.ts");
 
 interface Trend {
@@ -12,6 +14,7 @@ interface Trend {
 }
 
 const app = express();
+const router = express.Router();
 
 var T = new Twit(config);
 
@@ -20,7 +23,7 @@ var params = {
   id: "1"
 };
 
-app.get("/trends", (req, res) => {
+router.get("/trends", (req, res) => {
   T.get("trends/place", params, (err, data, response) => {
     if (err) {
       console.log(err);
@@ -41,4 +44,7 @@ app.get("/trends", (req, res) => {
   });
 });
 
-app.listen(1234);
+app.use("/.netlify/functions/index", router);
+
+module.exports = app;
+module.exports.handler = serverless(app);
