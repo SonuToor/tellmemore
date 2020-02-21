@@ -1,6 +1,6 @@
 # Tell Me More
 
-##### Learn more about a Twitter trend instantly.
+##### [Learn more about a Twitter trend instantly.](https://tellmemore.netlify.com/)
 
 ![logo](https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2019/08/twitter-796x417.png)
 
