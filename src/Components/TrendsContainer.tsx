@@ -14,6 +14,10 @@ const Container = styled.div`
   flex-direction: column;
   overflow-y: scroll;
   border-radius: ${props => props.theme.borderRadius};
+  @media (max-width: 575px) {
+    min-height: 275px;
+    max-height: 275px;
+  }
 `;
 
 const TrendsContainer: FunctionComponent<{

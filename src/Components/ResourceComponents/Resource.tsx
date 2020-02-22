@@ -102,7 +102,7 @@ const Resource: FunctionComponent<{
     <ResourceDiv onClick={getResources}>
       <ResourceMain>
         {resource}
-        <ResourceImage src={icon} />
+        <ResourceImage src={icon} alt={`Logo of ${resource}`} />
       </ResourceMain>
       <ResourceResults style={resourceSpring}>
         {selected ? (
