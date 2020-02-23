@@ -15,8 +15,8 @@ const Container = styled.div`
   overflow-y: scroll;
   border-radius: ${props => props.theme.borderRadius};
   @media (max-width: 575px) {
-    min-height: 275px;
-    max-height: 275px;
+    min-height: 30vh;
+    max-height: 30vh;
   }
 `;
 

@@ -10,7 +10,7 @@ const StyledHeader = styled.header`
   justify-content: center;
   margin-bottom: 5%;
   @media (max-width: 575px) {
-    margin-bottom: -2%;
+    margin-bottom: -5%;
     font-size: 90%;
   }
 `;

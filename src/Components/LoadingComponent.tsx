@@ -10,6 +10,9 @@ const LoadingComponent: FunctionComponent<{ trends: boolean }> = ({
     justify-content: center;
     margin-top: ${trends ? "200px" : "5px"};
     margin-bottom: ${trends ? "0px" : "5px"};
+    @media (max-width: 575px) {
+      margin-top: ${trends ? "100px" : "5px"};
+    }
   `;
   return (
     <LoadingContainer>
