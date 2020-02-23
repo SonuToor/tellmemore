@@ -30,6 +30,12 @@ const Main = styled.main`
   width: 80%;
   display: flex;
   justify-content: space-around;
+  @media (max-width: 1200px) {
+    flex-direction: column-reverse;
+    width: 95%;
+    margin-left: 2.5%;
+    font-size: 85%;
+  }
 `;
 
 const App: FunctionComponent = () => {
@@ -44,9 +50,9 @@ const App: FunctionComponent = () => {
     marginTop: showResources ? 0 : -500
   });
 
-  const trendSpring = useSpring({
-    marginLeft: showResources ? -50 : 0
-  });
+  // const trendSpring = useSpring({
+  //   marginLeft: showResources ? -50 : 0
+  // });
 
   useEffect(() => {
     fetch("/.netlify/functions/index/trends")
@@ -76,9 +82,7 @@ const App: FunctionComponent = () => {
       <GlobalStyle />
       <Header />
       <Main>
-        <animated.div style={trendSpring}>
-          <TrendsContainer trends={trends} error={fetchError} />
-        </animated.div>
+        <TrendsContainer trends={trends} error={fetchError} />
         {showResources ? (
           <animated.div style={resourceSpring}>
             <ResourcesContainer />

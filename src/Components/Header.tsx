@@ -9,6 +9,10 @@ const StyledHeader = styled.header`
   align-items: center;
   justify-content: center;
   margin-bottom: 5%;
+  @media (max-width: 575px) {
+    margin-bottom: -5%;
+    font-size: 90%;
+  }
 `;
 
 // const HeaderLink = styled.span`

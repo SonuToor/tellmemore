@@ -16,6 +16,12 @@ const Container = styled.div`
   font-weight: bold;
   overflow-y: scroll;
   border-radius: ${props => props.theme.borderRadius};
+  @media (max-width: 1200px) {
+    margin-bottom: 10px;
+    min-width: 300px;
+    min-height: 55vh;
+    max-height: 55vh;
+  }
 `;
 
 const Trend = styled.h3`
