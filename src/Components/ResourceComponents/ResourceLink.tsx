@@ -14,6 +14,11 @@ const Link = styled.a`
     background-color: ${props => props.theme.backgroundColors.main};
     color: ${props => props.theme.colors.main};
   }
+  @media (max-width: 1200px) {
+    padding: 2px;
+    min-height: 25px;
+    max-height: 50px;
+  }
 `;
 
 const ResourceLink: FunctionComponent<{ link: string[] }> = ({ link }) => {

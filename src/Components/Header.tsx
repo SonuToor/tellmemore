@@ -15,22 +15,12 @@ const StyledHeader = styled.header`
   }
 `;
 
-// const HeaderLink = styled.span`
-//   color: ${props => props.theme.colors.secondary};
-
-//   &:hover {
-//     color: ${props => props.theme.colors.main};
-//   }
-// `;
-
 const Header: FunctionComponent = () => {
   return (
     <StyledHeader>
       <h1>
         <span style={{ color: "#1DA1F2" }}>#</span>Tell Me More
       </h1>
-      {/* <HeaderLink>How to</HeaderLink>
-      <HeaderLink>How it works</HeaderLink> */}
     </StyledHeader>
   );
 };
