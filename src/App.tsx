@@ -1,4 +1,5 @@
 import Header from "./Components/Header";
+import Footer from "./Components/Footer";
 import React, {
   FunctionComponent,
   useContext,
@@ -19,6 +20,8 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${props => props.theme.backgroundColors.main};
     font-family: ${props => props.theme.font};
     color: ${props => props.theme.colors.secondary};
+    display: flex;
+    flex-direction: column;
     margin: 0;
     padding: 0;
   }
@@ -49,10 +52,6 @@ const App: FunctionComponent = () => {
     opacity: showResources ? 1 : 0,
     marginTop: showResources ? 0 : -500
   });
-
-  // const trendSpring = useSpring({
-  //   marginLeft: showResources ? -50 : 0
-  // });
 
   useEffect(() => {
     fetch("/.netlify/functions/index/trends")
@@ -89,6 +88,7 @@ const App: FunctionComponent = () => {
           </animated.div>
         ) : null}
       </Main>
+      <Footer />
     </ThemeProvider>
   );
 };
