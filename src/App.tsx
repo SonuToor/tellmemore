@@ -37,7 +37,7 @@ const Main = styled.main`
     flex-direction: column-reverse;
     width: 95%;
     margin-left: 2.5%;
-    font-size: 85%;
+    font-size: 75%;
   }
 `;
 

@@ -6,6 +6,9 @@ const StyledFooter = styled.footer`
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 0);
+  @media (max-width: 575px) {
+    font-size: 60%;
+  }
 `;
 
 const StyledLink = styled.a`

@@ -19,8 +19,8 @@ const Container = styled.div`
   @media (max-width: 1200px) {
     margin-bottom: 10px;
     min-width: 300px;
-    min-height: 55vh;
-    max-height: 55vh;
+    min-height: 50vh;
+    max-height: 50vh;
   }
 `;
 
