@@ -15,7 +15,7 @@ const LoadingComponent: FunctionComponent<{ trends: boolean }> = ({
     }
   `;
   return (
-    <LoadingContainer>
+    <LoadingContainer data-testid="loading-container">
       <ReactLoading type="spin" color="white" height={50} width={50} />
     </LoadingContainer>
   );
