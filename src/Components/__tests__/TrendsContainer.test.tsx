@@ -31,8 +31,6 @@ test("renders trends into container", () => {
   expect(trend6).toBe(trendsContainer.children[5].firstChild);
 });
 
-// test for having no trends?
-
 test("renders the loading component if there's no trends", () => {
   const trends: any[] = [];
 
@@ -43,5 +41,7 @@ test("renders the loading component if there's no trends", () => {
   );
 
   const loading = getByTestId("loading-container");
+
+  // expect the loading container to be there
   expect(loading).not.toBeNull();
 });
