@@ -22,10 +22,6 @@ test("tell the user there are no resources found", () => {
 
   const { getByText, container, getAllByTestId } = render(tree);
 
-  let section = getAllByTestId("resource-section");
-
-  console.log(document.body.innerHTML);
-
   // fireEvent.click(section[0]);
 
   // const noResults = getByText(

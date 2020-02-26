@@ -98,7 +98,7 @@ const Resource: FunctionComponent<{
   }, [params]);
 
   return (
-    <ResourceDiv onClick={getResources} data-testid="resource-section">
+    <ResourceDiv onClick={getResources}>
       <ResourceMain>
         {resource}
         <ResourceImage src={icon} alt={`Logo of ${resource}`} />
