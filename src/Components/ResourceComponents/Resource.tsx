@@ -2,7 +2,6 @@ import fetchResources from "../../Services/fetchResources";
 import React, { FunctionComponent, useState, useEffect } from "react";
 import ResourceLink from "./ResourceLink";
 import styled from "styled-components";
-// import ReactLoading from "react-loading";
 import LoadingComponent from "../LoadingComponent";
 import { useSpring, animated } from "react-spring";
 
@@ -99,7 +98,7 @@ const Resource: FunctionComponent<{
   }, [params]);
 
   return (
-    <ResourceDiv onClick={getResources}>
+    <ResourceDiv onClick={getResources} data-testid="resource-section">
       <ResourceMain>
         {resource}
         <ResourceImage src={icon} alt={`Logo of ${resource}`} />

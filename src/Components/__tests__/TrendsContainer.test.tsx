@@ -16,11 +16,13 @@ test("renders trends into container", () => {
     "#Trend8"
   ];
 
-  const { getByText, container } = render(
+  const tree = (
     <ThemeProvider theme={theme}>
       <TrendsContainer trends={trends} error={false} />
     </ThemeProvider>
   );
+
+  const { getByText, container } = render(tree);
 
   const trendsContainer = container.firstChild;
   const trend6 = getByText("#Trend6");
