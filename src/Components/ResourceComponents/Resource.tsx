@@ -5,10 +5,10 @@ import styled from "styled-components";
 import LoadingComponent from "../LoadingComponent";
 import { useSpring, animated } from "react-spring";
 
-const ResourceDiv = styled.section`
+export const ResourceDiv = styled.section`
   cursor: pointer;
   min-height: 50px;
-  max-height: 200px;
+  max-height: 240px;
   overflow-y: scroll;
 
   &:hover {
