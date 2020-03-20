@@ -4,7 +4,7 @@ import { SelectedTrendContext } from "../../Context/SelectedTrendContext";
 import fetcher from "../../Services/fetchResources";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../theme";
-import { render, fireEvent, wait } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 
 test("A resource will initially show a loading component when clicked", () => {
   let paramsReddit = ["Find", "Me", "Something"];
@@ -44,13 +44,7 @@ test("Clicking the Resource Div calls the onClick handler", () => {
 test("Clicking a resource calls the fetchResources function", async () => {
   let paramsReddit = ["Find", "Me", "Something"];
 
-  let fetchResources = jest
-    .spyOn(fetcher, "fetchResources")
-    .mockImplementation(() => {
-      return Promise.resolve().then(() => {
-        return [[]];
-      });
-    });
+  let fetchResources = jest.spyOn(fetcher, "fetchResources");
 
   const tree = (
     <ThemeProvider theme={theme}>
@@ -58,14 +52,10 @@ test("Clicking a resource calls the fetchResources function", async () => {
     </ThemeProvider>
   );
 
-  const { container, debug, getByText } = render(tree);
+  const { getByText } = render(tree);
 
   let reddit = getByText("Reddit");
   fireEvent.click(reddit);
-
-  debug(container);
-
-  await wait();
 
   expect(fetchResources).toHaveBeenCalled();
 });
